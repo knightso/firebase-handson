@@ -16,6 +16,10 @@
 	<!-- initialize the SDK after all desired features are loaded -->
 	<script defer src="/__/firebase/init.js"></script>
 
+	<!-- FirebaseUI Auth -->
+	<script src="https://www.gstatic.com/firebasejs/ui/4.5.1/firebase-ui-auth__ja.js"></script>
+	<link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.5.1/firebase-ui-auth.css" />
+
 	<style media="screen">
 		body {
 			background: #ECEFF1;
@@ -88,16 +92,33 @@
 				border-top: 16px solid #ffa100;
 			}
 		}
+
+		.hidden {
+			display: none;
+		}
 	</style>
+
 </head>
 
 <body>
-	<div id="message">
-		<h2>Welcome</h2>
-		<h1>Firebase Hosting Setup Complete</h1>
-		<p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something
-			extraordinary!</p>
-		<a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
+	<div id="loaded" class="hidden">
+		<div id="user-signed-in" class="hidden">
+			<div id="message">
+				<h2>Welcome, <span id="user-name"></span>(<span id="user-email"></span>)</h2>
+				<h1>Firebase Hosting Setup Complete</h1>
+				<p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build
+					something extraordinary!</p>
+				<a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
+			</div>
+			<p>
+				<button id="sign-out">Sign Out</button>
+				<button id="delete-account">Delete account</button>
+			</p>
+		</div>
+		<div id="user-signed-out" class="hidden">
+			<h4>You are signed out.</h4>
+			<div id="firebaseui-container"></div>
+		</div>
 	</div>
 	<p id="load">Firebase SDK Loading&hellip;</p>
 
@@ -123,6 +144,7 @@
 		}
 		});
 	</script>
+	<script defer src="auth.js"></script>
 </body>
 
 </html>
