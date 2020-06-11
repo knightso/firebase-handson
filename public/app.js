@@ -67,6 +67,8 @@ function submitMsg(msg) {
         });
 }
 
+var unsubscribeMessages;
+
 /**
  * handle change room event.
  */
@@ -89,20 +91,23 @@ function handleChangeRoom(roomId) {
 
     let db = firebase.firestore();
 
-    db.collection("rooms").doc(roomId).collection("messages").orderBy("createdAt")
-        .get()
-        .then(function(querySnapshot) {
+    if (unsubscribeMessages) {
+        unsubscribeMessages();
+        unsubscribeMessages = undefined;
+    }
+
+    unsubscribeMessages = db.collection("rooms").doc(roomId).collection("messages").orderBy("createdAt")
+        .onSnapshot(function(querySnapshot) {
             msgsDiv.innerHTML = '';
 
             querySnapshot.forEach(function(msgRef) {
-                const msg = msgRef.data();
+                const msg = msgRef.data({serverTimestamps: "estimate"});
                 const msgDiv = msgTmpl.content.cloneNode(true);
                 msgDiv.querySelector('.msg-from').innerText = `${msg.from.displayName || 'Anonymous'}: `;
                 msgDiv.querySelector('.msg-text').innerText = msg.text;
                 msgsDiv.appendChild(msgDiv);
             })
-        })
-        .catch(function(error) {
+        }, function(error) {
             window.alert(`Error getting messages: ${error}`);
         });
 }
