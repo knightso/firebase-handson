@@ -96,6 +96,16 @@
 		.hidden {
 			display: none;
 		}
+
+		#msgs {
+			width: 100%;
+			height: 400px;
+			overflow: scroll;
+		}
+
+		.msg-from {
+			font-weight: bold;
+		}
 	</style>
 
 </head>
@@ -108,6 +118,14 @@
 				<select id="rooms">
 					<option value="">select a room</option>
 				</select>
+				<template id="msg-template">
+					<p class="msg">
+						<span class="msg-from">user:</span> <span class="msg-text">sample text</span>
+					</p>
+				</template>
+				<div id="msgs">
+				</div>
+				<input type="text" id="submit-msg-text"/><button id="submit-msg-button">submit</button>
 				<p>
 					<button id="sign-out">Sign Out</button>
 					<button id="delete-account">Delete account</button>
