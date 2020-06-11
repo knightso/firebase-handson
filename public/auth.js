@@ -48,6 +48,7 @@ var handleSignedInUser = function(user) {
     document.getElementById('user-signed-out').style.display = 'none';
     document.getElementById('user-name').textContent = user.displayName || 'Anonymous';
     document.getElementById('user-email').textContent = user.email || 'none';
+    initRooms();
 };
 
 /**
