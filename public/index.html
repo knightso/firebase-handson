@@ -10,7 +10,7 @@
 	<script defer src="/__/firebase/7.15.0/firebase-app.js"></script>
 	<!-- include only the Firebase features as you need -->
 	<script defer src="/__/firebase/7.15.0/firebase-auth.js"></script>
-	<script defer src="/__/firebase/7.15.0/firebase-database.js"></script>
+	<script defer src="/__/firebase/7.15.0/firebase-firestore.js"></script>
 	<script defer src="/__/firebase/7.15.0/firebase-messaging.js"></script>
 	<script defer src="/__/firebase/7.15.0/firebase-storage.js"></script>
 	<!-- initialize the SDK after all desired features are loaded -->
@@ -105,15 +105,14 @@
 		<div id="user-signed-in" class="hidden">
 			<div id="message">
 				<h2>Welcome, <span id="user-name"></span>(<span id="user-email"></span>)</h2>
-				<h1>Firebase Hosting Setup Complete</h1>
-				<p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build
-					something extraordinary!</p>
-				<a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
+				<select id="rooms">
+					<option value="">select a room</option>
+				</select>
+				<p>
+					<button id="sign-out">Sign Out</button>
+					<button id="delete-account">Delete account</button>
+				</p>
 			</div>
-			<p>
-				<button id="sign-out">Sign Out</button>
-				<button id="delete-account">Delete account</button>
-			</p>
 		</div>
 		<div id="user-signed-out" class="hidden">
 			<h4>You are signed out.</h4>
@@ -144,6 +143,7 @@
 		}
 		});
 	</script>
+	<script defer src="app.js"></script>
 	<script defer src="auth.js"></script>
 </body>
 
