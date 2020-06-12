@@ -16,6 +16,11 @@
 	<!-- initialize the SDK after all desired features are loaded -->
 	<script defer src="/__/firebase/init.js"></script>
 
+	<!-- for storage feature -->
+	<script defer src="storage/libs.js"></script>
+	<script defer src="storage/main.js"></script>
+	<link type="text/css" rel="stylesheet" href="storage/main.css" />
+
 	<!-- FirebaseUI Auth -->
 	<script src="https://www.gstatic.com/firebasejs/ui/4.5.1/firebase-ui-auth__ja.js"></script>
 	<link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.5.1/firebase-ui-auth.css" />
@@ -130,6 +135,7 @@
 					<button id="sign-out">Sign Out</button>
 					<button id="delete-account">Delete account</button>
 				</p>
+				<div id="upload"></div>
 			</div>
 		</div>
 		<div id="user-signed-out" class="hidden">
@@ -160,6 +166,11 @@
 			document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
 		}
 		});
+	</script>
+	<script>
+		ReactDOM.render(
+			React.createElement(FileUpload, { onSave:(fiels) => uploadFiles(files) }
+		), document.getElementById('upload'));
 	</script>
 	<script defer src="app.js"></script>
 	<script defer src="auth.js"></script>
